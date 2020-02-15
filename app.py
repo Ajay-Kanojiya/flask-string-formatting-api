@@ -10,13 +10,19 @@ api = Api(app, title=' String Formatting', version='1.0',
 @api.route('/split_string/<string:String>/<int:Number>')
 class SplitString(Resource):
     def get(self, String, Number):
+        String = String[::-1]
+        eml = []
+        for i in range(0, len(String), Number):
+            eml.append((String[i:i+Number])[::-1])
+        output = ' '.join(reversed(eml))
         return {'Output Response': output}
 
 
 @api.route('/string_freq/<string:String>')
 class StringFreq(Resource):
     def get(self, String):
-        spt = String.split(',')
+        rmspc = String.replace(' ', '')
+        spt = rmspc.split(',')
         output = Counter(spt)
         return {'Output Response': output}
 
