@@ -18,7 +18,6 @@ class StringFreq(Resource):
     def get(self, String):
         spt = String.split(',')
         output = Counter(spt)
-        print(output)
         return {'Output Response': output}
 
 
